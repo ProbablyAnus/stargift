@@ -1,6 +1,7 @@
 import { FC, useState, useRef } from "react";
 import { PriceTabs } from "../PriceTabs";
 import StarSvg from "@/assets/gifts/star-badge.svg";
+import ButtonIcon from "@/assets/gifts/svg-image-1.svg";
 import { Switch } from "@/components/ui/switch";
 import { RefreshCw } from "lucide-react";
 import { useAdaptivity } from "@/hooks/useAdaptivity";
@@ -140,22 +141,31 @@ export const GiftsPage: FC = () => {
 
   // Button text based on state
   const getButtonContent = () => {
+    const contentKey = isSpinning ? "spinning" : demoMode ? "demo" : "gift";
+
     if (isSpinning) {
       return (
-        <RefreshCw size={26} className="animate-spin text-primary-foreground" />
+        <span key={contentKey} className="button-content">
+          <RefreshCw size={26} className="animate-spin text-primary-foreground" />
+        </span>
       );
     }
 
     if (demoMode) {
-      return <span className="text-primary-foreground font-semibold text-lg">Испытать удачу!</span>;
+      return (
+        <span key={contentKey} className="button-content text-primary-foreground font-semibold text-lg">
+          Испытать удачу!
+          <img src={ButtonIcon} alt="" className="button-price-icon" />
+        </span>
+      );
     }
 
     return (
-      <>
+      <span key={contentKey} className="button-content">
         <span className="text-lg">Получить подарок</span>
-        <img src={StarSvg} alt="Stars" className="star-icon" />
+        <img src={ButtonIcon} alt="" className="button-price-icon" />
         <span className="text-lg font-semibold price-value">{selectedPrice}</span>
-      </>
+      </span>
     );
   };
 
@@ -199,23 +209,23 @@ export const GiftsPage: FC = () => {
         {/* Roulette Container */}
         <div 
           ref={containerRef}
-          className="relative overflow-hidden"
+          className="relative overflow-hidden px-4"
           style={{ height: `${baseCardHeight + 18}px` }}
         >
           {/* Gradient overlays */}
           <div
-            className="absolute left-0 top-0 bottom-0 w-8 z-10"
-            style={{ background: "linear-gradient(to right, var(--app-bg), transparent)" }}
+            className="absolute left-4 top-0 bottom-0 w-12 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to right, var(--app-bg), transparent)", backdropFilter: "blur(10px)" }}
           />
           <div
-            className="absolute right-0 top-0 bottom-0 w-8 z-10"
-            style={{ background: "linear-gradient(to left, var(--app-bg), transparent)" }}
+            className="absolute right-4 top-0 bottom-0 w-12 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to left, var(--app-bg), transparent)", backdropFilter: "blur(10px)" }}
           />
           
           {/* Scrolling roulette */}
           <div
             ref={rouletteRef}
-            className="flex h-full items-center pl-4 gpu-accelerated"
+            className="flex h-full items-center gpu-accelerated"
             style={{ width: "fit-content", gap: `${cardGap}px` }}
           >
             {extendedRoulette.map((gift, index) => (
@@ -271,7 +281,7 @@ export const GiftsPage: FC = () => {
       {/* Demo Mode Toggle */}
       <div className="flex items-center justify-between px-4 pt-3 pb-4">
         <span className="text-foreground text-lg">Демо режим</span>
-        <Switch checked={demoMode} onCheckedChange={setDemoMode} />
+        <Switch checked={demoMode} onCheckedChange={setDemoMode} className="demo-switch" />
       </div>
 
       {/* Get Gift Button */}
@@ -296,6 +306,7 @@ export const GiftsPage: FC = () => {
           style={{ 
             scrollSnapType: "x mandatory",
             scrollPaddingLeft: 16,
+            scrollPaddingRight: 16,
           }}
         >
           {allWinPrizes.map((prize, index) => (
@@ -318,7 +329,7 @@ export const GiftsPage: FC = () => {
                 </picture>
               </div>
               {/* Price badge centered */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 star-badge star-badge--center star-badge--tight">
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 star-badge star-badge--center star-badge--tight">
                 <span className="price-row">
                   <img src={StarSvg} alt="Stars" className="star-icon" />
                   <span className="text-[17px] font-normal">{prize.price}</span>
