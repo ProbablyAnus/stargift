@@ -902,3 +902,73 @@ html, body, #root {
   color: color-mix(in srgb, var(--tg-text) 65%, transparent);
   letter-spacing: 0.01em;
 }
+
+/* === Latest requested adjustments === */
+.tg-tabs {
+  margin-bottom: 36px !important;
+}
+
+.tg-tab {
+  height: 46px !important;
+  padding: 0 16px !important;
+  font-size: 19px !important;
+}
+
+.star-icon,
+.tg-tab__star,
+.button-price-icon {
+  width: 1.2em !important;
+  height: 1.2em !important;
+}
+
+.primary-button {
+  height: 54px !important;
+  font-size: 17px !important;
+  gap: 12px !important;
+}
+
+.button-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  animation: button-fade-in 220ms ease;
+}
+
+.button-price-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.demo-switch {
+  height: 32px !important;
+  width: 56px !important;
+}
+
+.demo-switch[data-state="checked"],
+.demo-switch[data-state="unchecked"] {
+  border-width: 2px !important;
+}
+
+.demo-switch span {
+  height: 26px !important;
+  width: 26px !important;
+}
+
+.demo-switch[data-state="checked"] span {
+  transform: translateX(24px) !important;
+}
+
+.chance-text {
+  margin-top: 10px;
+}
+
+@keyframes button-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

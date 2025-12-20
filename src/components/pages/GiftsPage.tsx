@@ -1,6 +1,7 @@
 import { FC, useState, useRef } from "react";
 import { PriceTabs } from "../PriceTabs";
 import StarSvg from "@/assets/gifts/star-badge.svg";
+import ButtonIcon from "@/assets/gifts/svg-image-1.svg";
 import { Switch } from "@/components/ui/switch";
 import { RefreshCw } from "lucide-react";
 import { useAdaptivity } from "@/hooks/useAdaptivity";
@@ -140,22 +141,31 @@ export const GiftsPage: FC = () => {
 
   // Button text based on state
   const getButtonContent = () => {
+    const contentKey = isSpinning ? "spinning" : demoMode ? "demo" : "gift";
+
     if (isSpinning) {
       return (
-        <RefreshCw size={26} className="animate-spin text-primary-foreground" />
+        <span key={contentKey} className="button-content">
+          <RefreshCw size={26} className="animate-spin text-primary-foreground" />
+        </span>
       );
     }
 
     if (demoMode) {
-      return <span className="text-primary-foreground font-semibold text-lg">Испытать удачу!</span>;
+      return (
+        <span key={contentKey} className="button-content text-primary-foreground font-semibold text-lg">
+          Испытать удачу!
+          <img src={ButtonIcon} alt="" className="button-price-icon" />
+        </span>
+      );
     }
 
     return (
-      <>
+      <span key={contentKey} className="button-content">
         <span className="text-lg">Получить подарок</span>
-        <img src={StarSvg} alt="Stars" className="star-icon" />
+        <img src={ButtonIcon} alt="" className="button-price-icon" />
         <span className="text-lg font-semibold price-value">{selectedPrice}</span>
-      </>
+      </span>
     );
   };
 
@@ -271,7 +281,7 @@ export const GiftsPage: FC = () => {
       {/* Demo Mode Toggle */}
       <div className="flex items-center justify-between px-4 pt-3 pb-4">
         <span className="text-foreground text-lg">Демо режим</span>
-        <Switch checked={demoMode} onCheckedChange={setDemoMode} />
+        <Switch checked={demoMode} onCheckedChange={setDemoMode} className="demo-switch" />
       </div>
 
       {/* Get Gift Button */}
@@ -296,8 +306,10 @@ export const GiftsPage: FC = () => {
           style={{ 
             scrollSnapType: "x mandatory",
             scrollPaddingLeft: 16,
+            scrollPaddingRight: 16,
           }}
         >
+          <div className="w-4 shrink-0" aria-hidden="true" />
           {allWinPrizes.map((prize, index) => (
             <div
               key={index}
@@ -311,14 +323,14 @@ export const GiftsPage: FC = () => {
               }}
             >
               {/* Centered icon */}
-              <div className="absolute inset-0 flex items-center justify-center pb-9">
+              <div className="absolute inset-0 flex items-center justify-center pb-12">
                 <picture>
                   {prize.icon.webp && <source srcSet={prize.icon.webp} type="image/webp" />}
                   <img src={prize.icon.src} alt={prize.label} className="w-[72px] h-[72px] drop-shadow-lg" />
                 </picture>
               </div>
               {/* Price badge centered */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 star-badge star-badge--center star-badge--tight">
+              <div className="absolute bottom-9 left-1/2 -translate-x-1/2 star-badge star-badge--center star-badge--tight">
                 <span className="price-row">
                   <img src={StarSvg} alt="Stars" className="star-icon" />
                   <span className="text-[17px] font-normal">{prize.price}</span>
@@ -328,6 +340,7 @@ export const GiftsPage: FC = () => {
               <span className="absolute bottom-2 left-1/2 -translate-x-1/2 chance-text">{prize.chance}</span>
             </div>
           ))}
+          <div className="w-4 shrink-0" aria-hidden="true" />
         </div>
       </div>
     </div>
