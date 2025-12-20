@@ -358,9 +358,6 @@ html, body {
   background: color-mix(in srgb, var(--app-card) 60%, transparent);
   border-color: color-mix(in srgb, var(--tg-text) 12%, transparent);
 }
-.tg-tab__star {
-  display: inline-block;
-}
 
 /* Header background (requested) */
 .tg-header {
@@ -408,13 +405,6 @@ html, body {
   border-color: color-mix(in srgb, var(--tg-text) 12%, transparent);
 }
 
-/* Star icon sizing: match digits */
-.star-icon,
-.tg-tab__star,
-.star-badge .star-icon {
-  width: 1em !important;
-  height: 1em !important;
-}
 .price-row {
   display: inline-flex;
   align-items: center;
@@ -855,7 +845,8 @@ html, body, #root {
   line-height: 1 !important;
 }
 
-.star-icon {
+.star-icon,
+.star-badge .star-icon {
   width: 1em !important;
   height: 1em !important;
   display: inline-block !important;
