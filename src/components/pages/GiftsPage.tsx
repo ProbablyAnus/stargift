@@ -298,8 +298,8 @@ export const GiftsPage: FC = () => {
       </div>
 
       {/* Win Prizes Section - Horizontal Scroll */}
-      <div className="pt-3">
-        <p className="text-sm uppercase tracking-wide text-muted-foreground mb-3 px-4 font-medium">
+      <div className="pt-2">
+        <p className="text-sm uppercase tracking-wide text-muted-foreground mb-2 px-4 font-medium">
           ВЫ МОЖЕТЕ ВЫИГРАТЬ
         </p>
         
