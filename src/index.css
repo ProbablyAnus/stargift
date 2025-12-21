@@ -256,6 +256,101 @@
     cursor: not-allowed;
   }
 
+  .win-result-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    background: color-mix(in srgb, var(--app-bg) 78%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms ease;
+    padding: 20px;
+  }
+
+  .win-result-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .win-result-panel {
+    width: min(380px, 100%);
+    height: min(680px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 90px 14px 32px;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 360ms ease, opacity 360ms ease;
+  }
+
+  .win-result-overlay.is-visible .win-result-panel {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .win-result-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+  }
+
+  .win-result-icon {
+    width: 104px;
+    height: 104px;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+  }
+
+  .win-result-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--tg-text);
+  }
+
+  .win-result-description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--tg-text) 70%, transparent);
+    max-width: 270px;
+  }
+
+  .win-result-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .win-result-button {
+    width: 100%;
+    height: 54px;
+    border-radius: 16px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--tg-text);
+    background: color-mix(in srgb, var(--app-card) 82%, transparent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: transform 150ms ease, opacity 150ms ease, background 150ms ease;
+  }
+
+  .win-result-button--primary {
+    background: color-mix(in srgb, var(--app-card) 90%, transparent);
+  }
+
+  .win-result-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
   /* Touch feedback (kept for existing UI) */
   .touch-feedback {
     @apply transition-all duration-150 active:scale-95 active:opacity-80;
