@@ -331,14 +331,14 @@ export const GiftsPage: FC = () => {
                 </picture>
               </div>
               {/* Price badge centered */}
-              <div className="absolute bottom-9 left-1/2 -translate-x-1/2 star-badge star-badge--center star-badge--tight">
+              <div className="absolute bottom-7 left-1/2 -translate-x-1/2 star-badge star-badge--center star-badge--tight">
                 <span className="price-row">
                   <img src={StarSvg} alt="Stars" className="star-icon" />
                   <span className="text-[16px] font-normal">{prize.price}</span>
                 </span>
               </div>
               {/* Chance at bottom center */}
-              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 chance-text">{prize.chance}</span>
+              <span className="absolute bottom-1 left-1/2 -translate-x-1/2 chance-text">{prize.chance}</span>
             </div>
           ))}
         </div>
