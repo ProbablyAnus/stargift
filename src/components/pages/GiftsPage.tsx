@@ -287,7 +287,7 @@ export const GiftsPage: FC = () => {
       </div>
 
       {/* Get Gift Button */}
-      <div className="px-4 pb-4 mt-4">
+      <div className="px-4 pb-3 mt-2">
         <button
           onClick={handleGetGift}
           disabled={isSpinning}
