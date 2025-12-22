@@ -84,6 +84,7 @@ export const GiftsPage: FC = () => {
   const baseCardHeight = sizeX === "compact" ? 162 : 184;
   const rouletteCardWidth = baseCardWidth;
   const cardGap = 12;
+  const containerPadding = Math.max(12, Math.round(baseCardWidth * 0.1));
 
   const apiBaseUrl = import.meta.env.VITE_API_BASE_URL ?? "";
   const isBusy = isSpinning || isProcessingPayment;
@@ -366,13 +367,16 @@ export const GiftsPage: FC = () => {
       </div>
 
       {/* Demo Mode Toggle */}
-      <div className="flex items-center justify-between px-4 pt-1 pb-4">
+      <div
+        className="flex items-center justify-between pt-1 pb-4"
+        style={{ paddingInline: containerPadding }}
+      >
         <span className="text-foreground text-lg">Демо режим</span>
         <Switch checked={demoMode} onCheckedChange={setDemoMode} className="demo-switch" />
       </div>
 
       {/* Get Gift Button */}
-      <div className="px-4 pb-3 mt-2">
+      <div className="pb-3 mt-2" style={{ paddingInline: containerPadding }}>
         <button
           onClick={demoMode ? startSpin : handlePayment}
           disabled={isBusy}
@@ -384,16 +388,19 @@ export const GiftsPage: FC = () => {
 
       {/* Win Prizes Section - Horizontal Scroll */}
       <div className="pt-2">
-        <p className="text-sm uppercase tracking-wide text-muted-foreground mb-2 px-4 font-medium">
+        <p
+          className="text-sm uppercase tracking-wide text-muted-foreground mb-2 font-medium"
+          style={{ paddingInline: containerPadding }}
+        >
           ВЫ МОЖЕТЕ ВЫИГРАТЬ
         </p>
         
         <div 
-          className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide scroll-smooth px-4"
+          className="flex gap-2 overflow-x-auto pb-4 scrollbar-hide scroll-smooth"
           style={{ 
             scrollSnapType: "x mandatory",
-            scrollPaddingLeft: 16,
-            scrollPaddingRight: 16,
+            scrollPadding: `0 ${containerPadding}px`,
+            paddingInline: containerPadding,
           }}
         >
           {allWinPrizes.map((prize, index) => (
