@@ -83,7 +83,7 @@ export const GiftsPage: FC = () => {
 
   const baseCardWidth = sizeX === "compact" ? CARD_DIMENSIONS.compact.width : CARD_DIMENSIONS.regular.width;
   const baseCardHeight = sizeX === "compact" ? CARD_DIMENSIONS.compact.height : CARD_DIMENSIONS.regular.height;
-  const rouletteCardWidth = baseCardWidth;
+  const rouletteCardWidth = baseCardWidth + 16;
   const cardGap = 10;
   const containerPadding = sizeX === "compact" ? 12 : 16;
 
@@ -297,7 +297,7 @@ export const GiftsPage: FC = () => {
             {extendedRoulette.map((gift, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 rounded-[12px] px-[8px] relative touch-feedback"
+                className="flex-shrink-0 rounded-[16px] px-[8px] relative pointer-events-none"
                 style={{ 
                   width: rouletteCardWidth, 
                   height: baseCardHeight,
@@ -398,7 +398,7 @@ export const GiftsPage: FC = () => {
       </div>
 
       {/* Win Prizes Section - Horizontal Scroll */}
-      <div className="pt-2">
+      <div className="pt-4">
         <p
           className="text-sm uppercase tracking-wide text-muted-foreground mb-2 font-medium"
           style={{ paddingInline: containerPadding }}

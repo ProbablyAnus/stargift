@@ -570,7 +570,7 @@ html, body {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin: 4px auto 20px;
+  margin: 4px auto 28px;
   padding: 0;
   width: 100%;
   max-width: 393px;
@@ -610,7 +610,6 @@ html, body {
 
 .tg-tab--active {
   background: color-mix(in srgb, var(--app-card) 92%, transparent);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.28);
   opacity: 1;
 }
 
@@ -628,8 +627,8 @@ html, body {
 }
 
 .tg-tab__star {
-  width: 1.15em;
-  height: 1.15em;
+  width: 1.6em;
+  height: 1.6em;
   display: inline-block;
   vertical-align: middle;
 }
@@ -657,6 +656,11 @@ html, body {
   line-height: 1;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+.star-badge .star-icon {
+  width: 1.3em;
+  height: 1.3em;
 }
 
 .star-badge--center {
